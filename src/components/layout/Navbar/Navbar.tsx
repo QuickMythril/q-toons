@@ -116,7 +116,7 @@ const NavBar: React.FC<Props> = ({
             src={Logo}
             style={{
               width: "auto",
-              height: "55px",
+              height: "75px",
               padding: "2px",
             }}
           />
@@ -392,7 +392,7 @@ const NavBar: React.FC<Props> = ({
           {isAuthenticated && userName && (
             <>
               <PublishVideo />
-              <StyledButton
+              {/*COMMENT/} <StyledButton
                 color="primary"
                 startIcon={<AddBoxIcon />}
                 onClick={() => {
@@ -400,7 +400,7 @@ const NavBar: React.FC<Props> = ({
                 }}
               >
                 create playlist
-              </StyledButton>
+              </StyledButton> {/*COMMENT*/}
             </>
           )}
         </AvatarContainer>

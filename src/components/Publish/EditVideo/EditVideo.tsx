@@ -53,7 +53,7 @@ import { TextEditor } from "../../common/TextEditor/TextEditor.tsx";
 import { extractTextFromHTML } from "../../common/TextEditor/utils.ts";
 import { toBase64 } from "../PublishVideo/PublishVideo.tsx";
 import { FrameExtractor } from "../../common/FrameExtractor/FrameExtractor.tsx";
-import { QTUBE_VIDEO_BASE } from "../../../constants/Identifiers.ts";
+import { QTOONS_VIDEO_BASE } from "../../../constants/Identifiers.ts";
 import { titleFormatter } from "../../../constants/Misc.ts";
 
 const uid = new ShortUniqueId();
@@ -321,7 +321,7 @@ export const EditVideo = () => {
         title: title.slice(0, 50),
         description: metadescription,
         identifier: editVideoProperties.id,
-        tag1: QTUBE_VIDEO_BASE,
+        tag1: QTOONS_VIDEO_BASE,
         filename: `video_metadata.json`,
       };
       listOfPublishes.push(requestBodyJson);
@@ -335,7 +335,7 @@ export const EditVideo = () => {
           title: title.slice(0, 50),
           description: metadescription,
           identifier: editVideoProperties.videoReference?.identifier,
-          tag1: QTUBE_VIDEO_BASE,
+          tag1: QTOONS_VIDEO_BASE,
           filename: `${alphanumericString.trim()}.${fileExtension}`,
         };
 

@@ -50,8 +50,8 @@ import { PlaylistListEdit } from "../PlaylistListEdit/PlaylistListEdit.tsx";
 import { TextEditor } from "../../common/TextEditor/TextEditor.tsx";
 import { extractTextFromHTML } from "../../common/TextEditor/utils.ts";
 import {
-  QTUBE_PLAYLIST_BASE,
-  QTUBE_VIDEO_BASE,
+  QTOONS_PLAYLIST_BASE,
+  QTOONS_VIDEO_BASE,
 } from "../../../constants/Identifiers.ts";
 
 const uid = new ShortUniqueId();
@@ -165,7 +165,7 @@ export const EditPlaylist = () => {
       const videos = [];
       if (videoList) {
         for (const vid of videoList) {
-          const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&identifier=${vid.identifier}&limit=1&includemetadata=true&reverse=true&name=${vid.name}&exactmatchnames=true&offset=0`;
+          const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&identifier=${vid.identifier}&limit=1&includemetadata=true&reverse=true&name=Q-Toons&exactmatchnames=true&offset=0`;
           const response = await fetch(url, {
             method: "GET",
             headers: {
@@ -309,7 +309,7 @@ export const EditPlaylist = () => {
       let commentsId = editVideoProperties?.id;
 
       if (isNew) {
-        commentsId = `${QTUBE_PLAYLIST_BASE}_cm_${id}`;
+        commentsId = `${QTOONS_PLAYLIST_BASE}_cm_${id}`;
       }
       const stringDescription = extractTextFromHTML(description);
 
@@ -345,7 +345,7 @@ export const EditPlaylist = () => {
         .trim()
         .toLowerCase();
       if (isNew) {
-        identifier = `${QTUBE_PLAYLIST_BASE}${sanitizeTitle.slice(
+        identifier = `${QTOONS_PLAYLIST_BASE}${sanitizeTitle.slice(
           0,
           30
         )}_${id}`;
@@ -358,7 +358,7 @@ export const EditPlaylist = () => {
         title: title.slice(0, 50),
         description: metadescription,
         identifier: identifier,
-        tag1: QTUBE_VIDEO_BASE,
+        tag1: QTOONS_VIDEO_BASE,
       };
 
       await qortalRequest(requestBodyJson);

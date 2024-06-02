@@ -22,7 +22,7 @@ import { formatDate, formatTimestampSeconds } from "../../utils/time";
 import { Video } from "../../state/features/videoSlice";
 import { queue } from "../../wrappers/GlobalWrapper";
 import { VideoCardImageContainer } from "./VideoCardImageContainer";
-import { QTUBE_VIDEO_BASE } from "../../constants/Identifiers.ts";
+import { QTOONS_VIDEO_BASE } from "../../constants/Identifiers.ts";
 
 interface VideoListProps {
   mode?: string;
@@ -54,7 +54,7 @@ export const VideoListComponentLevel = ({ mode }: VideoListProps) => {
   const getVideos = React.useCallback(async () => {
     try {
       const offset = videos.length;
-      const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&query=${QTUBE_VIDEO_BASE}_&limit=20&includemetadata=false&reverse=true&excludeblocked=true&name=${paramName}&exactmatchnames=true&offset=${offset}`;
+      const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&query=${QTOONS_VIDEO_BASE}_&limit=20&includemetadata=false&reverse=true&excludeblocked=true&name=Q-Toons&exactmatchnames=true&offset=${offset}`;
       const response = await fetch(url, {
         method: "GET",
         headers: {

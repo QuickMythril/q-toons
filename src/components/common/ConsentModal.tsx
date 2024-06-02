@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import localForage from "localforage";
 import { useTheme } from "@mui/material";
 const generalLocal = localForage.createInstance({
-  name: "q-tube-general",
+  name: "q-toons-general",
 });
 
 export default function ConsentModal() {
@@ -44,9 +44,9 @@ export default function ConsentModal() {
         <DialogTitle id="alert-dialog-title">Welcome</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Q-Tube is currently in its early stages, and may yet have undiscovered bugs.
+            Q-Toons is currently in its early stages, and may yet have undiscovered bugs.
             The Qortal community, including the Qortal Development Group, cannot be held responsible for any 
-            content published with the assistance of Q-Tube. All content published to QDN is done so by the owner of 
+            content published with the assistance of Q-Toons. All content published to QDN is done so by the owner of 
             the registered name, and no one else. The same applies to data loss, social manipulation, 
             any other potential issue. All responsibility lies with the user, as with every application built by
             the Qortal Development Group.

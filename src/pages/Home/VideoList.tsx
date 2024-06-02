@@ -47,7 +47,7 @@ export const VideoList = ({ videos }: VideoListProps) => {
   const theme = useTheme();
 
   const blockUserFunc = async (user: string) => {
-    if (user === "Q-Tube") return;
+    if (user === "Q-Toons") return;
 
     try {
       const response = await qortalRequest({

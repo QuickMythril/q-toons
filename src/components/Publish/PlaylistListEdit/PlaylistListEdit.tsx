@@ -11,7 +11,7 @@ import { removeVideo } from "../../../state/features/videoSlice.ts";
 import AddIcon from "@mui/icons-material/Add";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../state/store.ts";
-import { QTUBE_VIDEO_BASE } from "../../../constants/Identifiers.ts";
+import { QTOONS_VIDEO_BASE } from "../../../constants/Identifiers.ts";
 export const PlaylistListEdit = ({ playlistData, removeVideo, addVideo }) => {
   const theme = useTheme();
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ export const PlaylistListEdit = ({ playlistData, removeVideo, addVideo }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [filterSearch, setFilterSearch] = useState("");
   const search = async () => {
-    const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&mode=ALL&identifier=${QTUBE_VIDEO_BASE}&title=${filterSearch}&limit=20&includemetadata=true&reverse=true&name=${username}&exactmatchnames=true&offset=0`;
+    const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&mode=ALL&identifier=${QTOONS_VIDEO_BASE}&title=${filterSearch}&limit=20&includemetadata=true&reverse=true&name=Q-Toons&exactmatchnames=true&offset=0`;
     const response = await fetch(url, {
       method: "GET",
       headers: {

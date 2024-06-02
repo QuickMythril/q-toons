@@ -52,14 +52,13 @@ import { SuperLikesSection } from "../../../components/common/SuperLikesList/Sup
 import { useFetchSuperLikes } from "../../../hooks/useFetchSuperLikes.tsx";
 import {
   FOR_SUPER_LIKE,
-  QTUBE_VIDEO_BASE,
+  QTOONS_VIDEO_BASE,
   SUPER_LIKE_BASE,
 } from "../../../constants/Identifiers.ts";
 import {
   minPriceSuperlike,
   titleFormatterOnSave,
 } from "../../../constants/Misc.ts";
-import { SubscribeButton } from "../../../components/common/ContentButtons/SubscribeButton.tsx";
 import { FollowButton } from "../../../components/common/ContentButtons/FollowButton.tsx";
 import { LikeAndDislike } from "../../../components/common/ContentButtons/LikeAndDislike.tsx";
 
@@ -240,7 +239,7 @@ export const VideoContent = () => {
       if (!name || !id) return;
       dispatch(setIsLoadingGlobal(true));
 
-      const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&query=${QTUBE_VIDEO_BASE}&limit=1&includemetadata=true&reverse=true&excludeblocked=true&name=${name}&exactmatchnames=true&offset=0&identifier=${id}`;
+      const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&query=${QTOONS_VIDEO_BASE}&limit=1&includemetadata=true&reverse=true&excludeblocked=true&name=Q-Toons&exactmatchnames=true&offset=0&identifier=${id}`;
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -373,9 +372,6 @@ export const VideoContent = () => {
     if (!nameAddress || !id) return;
     getComments(id, nameAddress);
   }, [getComments, id, nameAddress]);
-  const subList = useSelector(
-    (state: RootState) => state.persist.subscriptionList
-  );
 
   const focusVideo = (e: React.MouseEvent<HTMLDivElement>) => {
     const focusRef = containerRef.current?.getContainerRef()?.current;
@@ -459,10 +455,6 @@ export const VideoContent = () => {
                   {channelName}
                   {channelName !== userName && (
                     <>
-                      <SubscribeButton
-                        subscriberName={channelName}
-                        sx={{ marginLeft: "20px" }}
-                      />
                       <FollowButton
                         followerName={channelName}
                         sx={{ marginLeft: "20px" }}

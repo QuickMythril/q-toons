@@ -14,8 +14,6 @@ import { IndividualProfile } from "./pages/ContentPages/IndividualProfile/Indivi
 import { PlaylistContent } from "./pages/ContentPages/PlaylistContent/PlaylistContent";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
-import { setFilteredSubscriptions } from "./state/features/videoSlice.ts";
-import { SubscriptionData } from "./components/common/ContentButtons/SubscribeButton.tsx";
 
 export const getUserName = async () => {
   const account = await qortalRequest({
@@ -30,46 +28,11 @@ export const getUserName = async () => {
   else return "";
 };
 
-export const filterVideosByName = (
-  subscriptionList: SubscriptionData[],
-  userName: string
-) => {
-  return subscriptionList.filter(item => {
-    return item.userName === userName;
-  });
-};
-
-export const subscriptionListFilter = async (reset = true) => {
-  const filteredSubscriptionList =
-    store.getState().video.filteredSubscriptionList;
-  const isFilteredSubscriptionListEmpty = filteredSubscriptionList.length === 0;
-
-  if (!reset && !isFilteredSubscriptionListEmpty) {
-    return filteredSubscriptionList;
-  }
-
-  const subscriptionList = store.getState().persist.subscriptionList;
-  const filterByUserName =
-    store.getState().persist.subscriptionListFilter === "currentNameOnly";
-  const userName = await getUserName();
-
-  if (filterByUserName && userName) {
-    return filterVideosByName(subscriptionList, userName);
-  } else return subscriptionList;
-};
-
 function App() {
   // const themeColor = window._qdnTheme
 
   const [theme, setTheme] = useState("dark");
   let persistor = persistStore(store);
-
-  useEffect(() => {
-    const subscriptionList = store.getState().persist.subscriptionList;
-    subscriptionListFilter(false).then(filteredList => {
-      store.dispatch(setFilteredSubscriptions(filteredList));
-    });
-  }, []);
 
   return (
     <Provider store={store}>

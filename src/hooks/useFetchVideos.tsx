@@ -21,11 +21,10 @@ import { fetchAndEvaluateVideos } from "../utils/fetchVideos";
 import { RequestQueue } from "../utils/queue";
 import { queue } from "../wrappers/GlobalWrapper";
 import {
-  QTUBE_PLAYLIST_BASE,
-  QTUBE_VIDEO_BASE,
+  QTOONS_PLAYLIST_BASE,
+  QTOONS_VIDEO_BASE,
 } from "../constants/Identifiers.ts";
 import { persistReducer } from "redux-persist";
-import { subscriptionListFilter } from "../App.tsx";
 import { ContentType, VideoListType } from "../state/features/persistSlice.ts";
 
 export const useFetchVideos = () => {
@@ -117,7 +116,7 @@ export const useFetchVideos = () => {
     try {
       dispatch(setIsLoadingGlobal(true));
 
-      // const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&query=${QTUBE_VIDEO_BASE}&limit=20&includemetadata=false&reverse=true&exc
+      // const url = `/arbitrary/resources/search?name=Q-Toons&mode=ALL&service=DOCUMENT&query=${QTOONS_VIDEO_BASE}&limit=20&includemetadata=false&reverse=true&exc
       // ludeblocked=true&exactmatchnames=true`;
       //
       // const response = await fetch(url, {
@@ -132,7 +131,7 @@ export const useFetchVideos = () => {
         action: "SEARCH_QDN_RESOURCES",
         mode: "ALL",
         service: "DOCUMENT",
-        query: "${QTUBE_VIDEO_BASE}",
+        query: "${QTOONS_VIDEO_BASE}",
         limit: 20,
         includeMetadata: true,
         reverse: true,
@@ -231,15 +230,10 @@ export const useFetchVideos = () => {
         }
         const videoLimit = limit || 20;
 
-        let defaultUrl = `/arbitrary/resources/search?mode=ALL&includemetadata=false&reverse=true&excludeblocked=true&exactmatchnames=true&offset=${offset}&limit=${videoLimit}`;
+        let defaultUrl = `/arbitrary/resources/search?name=Q-Toons&mode=ALL&includemetadata=false&reverse=true&excludeblocked=true&exactmatchnames=true&offset=${offset}&limit=${videoLimit}`;
 
         if (name) {
           defaultUrl = defaultUrl + `&name=${name}`;
-        } else if (videoListType === "subscriptions") {
-          const filteredSubscribeList = await subscriptionListFilter(false);
-          filteredSubscribeList.map(sub => {
-            defaultUrl += `&name=${sub.subscriberName}`;
-          });
         }
 
         if (category) {
@@ -261,13 +255,13 @@ export const useFetchVideos = () => {
         }
         if (contentType === "playlists") {
           defaultUrl = defaultUrl + `&service=PLAYLIST`;
-          defaultUrl = defaultUrl + `&identifier=${QTUBE_PLAYLIST_BASE}`;
+          defaultUrl = defaultUrl + `&identifier=${QTOONS_PLAYLIST_BASE}`;
         } else {
           defaultUrl = defaultUrl + `&service=DOCUMENT`;
-          defaultUrl = defaultUrl + `&identifier=${QTUBE_VIDEO_BASE}`;
+          defaultUrl = defaultUrl + `&identifier=${QTOONS_VIDEO_BASE}`;
         }
 
-        // const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&query=${QTUBE_VIDEO_BASE}&limit=${videoLimit}&includemetadata=false&reverse=true&excludeblocked=true&exactmatchnames=true&offset=${offset}`
+        // const url = `/arbitrary/resources/search?name=Q-Toons&mode=ALL&service=DOCUMENT&query=${QTOONS_VIDEO_BASE}&limit=${videoLimit}&includemetadata=false&reverse=true&excludeblocked=true&exactmatchnames=true&offset=${offset}`
         const url = defaultUrl;
         const response = await fetch(url, {
           method: "GET",
@@ -281,7 +275,7 @@ export const useFetchVideos = () => {
         //   action: "SEARCH_QDN_RESOURCES",
         //   mode: "ALL",
         //   service: "DOCUMENT",
-        //   query: "${QTUBE_VIDEO_BASE}",
+        //   query: "${QTOONS_VIDEO_BASE}",
         //   limit: 20,
         //   includeMetadata: true,
         //   offset: offset,
@@ -333,7 +327,7 @@ export const useFetchVideos = () => {
         const offset = filteredVideos.length;
         const replaceSpacesWithUnderscore = filterValue.replace(/ /g, "_");
 
-        const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&query=${replaceSpacesWithUnderscore}&identifier=${QTUBE_VIDEO_BASE}&limit=10&includemetadata=false&reverse=true&excludeblocked=true&exactmatchnames=true&offset=${offset}`;
+        const url = `/arbitrary/resources/search?name=Q-Toons&mode=ALL&service=DOCUMENT&query=${replaceSpacesWithUnderscore}&identifier=${QTOONS_VIDEO_BASE}&limit=10&includemetadata=false&reverse=true&excludeblocked=true&exactmatchnames=true&offset=${offset}`;
         const response = await fetch(url, {
           method: "GET",
           headers: {
@@ -347,7 +341,7 @@ export const useFetchVideos = () => {
         //   mode: "ALL",
         //   service: "DOCUMENT",
         //   query: replaceSpacesWithUnderscore,
-        //   identifier: "${QTUBE_VIDEO_BASE}",
+        //   identifier: "${QTOONS_VIDEO_BASE}",
         //   limit: 20,
         //   includeMetadata: true,
         //   offset: offset,
@@ -390,7 +384,7 @@ export const useFetchVideos = () => {
 
   const checkNewVideos = React.useCallback(async () => {
     try {
-      const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&query=${QTUBE_VIDEO_BASE}&limit=20&includemetadata=false&reverse=true&excludeblocked=true&exactmatchnames=true`;
+      const url = `/arbitrary/resources/search?name=Q-Toons&mode=ALL&service=DOCUMENT&query=${QTOONS_VIDEO_BASE}&limit=20&includemetadata=false&reverse=true&excludeblocked=true&exactmatchnames=true`;
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -402,7 +396,7 @@ export const useFetchVideos = () => {
       //   action: "SEARCH_QDN_RESOURCES",
       //   mode: "ALL",
       //   service: "DOCUMENT",
-      //   query: "${QTUBE_VIDEO_BASE}",
+      //   query: "${QTOONS_VIDEO_BASE}",
       //   limit: 20,
       //   includeMetadata: true,
       //   reverse: true,
@@ -427,7 +421,7 @@ export const useFetchVideos = () => {
 
   const getVideosCount = React.useCallback(async () => {
     try {
-      let url = `/arbitrary/resources/search?mode=ALL&includemetadata=false&limit=0&service=DOCUMENT&identifier=${QTUBE_VIDEO_BASE}`;
+      let url = `/arbitrary/resources/search?name=Q-Toons&mode=ALL&includemetadata=false&limit=0&service=DOCUMENT&identifier=${QTOONS_VIDEO_BASE}`;
 
       const response = await fetch(url, {
         method: "GET",

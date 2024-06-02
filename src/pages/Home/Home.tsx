@@ -37,7 +37,6 @@ import {
 } from "../../state/features/videoSlice";
 import {
   changeFilterType,
-  resetSubscriptions,
   VideoListType,
 } from "../../state/features/persistSlice.ts";
 import { categories, subCategories } from "../../constants/Categories.ts";
@@ -71,7 +70,7 @@ export const Home = ({ mode }: HomeProps) => {
     (state: RootState) => state.video.selectedCategoryVideos
   );
 
-  const { videos: globalVideos, filteredSubscriptionList } = useSelector(
+  const { videos: globalVideos } = useSelector(
     (state: RootState) => state.video
   );
 
@@ -333,35 +332,6 @@ export const Home = ({ mode }: HomeProps) => {
                 fontSize: "18px",
               }}
             />
-            <Input
-              id="standard-adornment-name"
-              onChange={e => {
-                setFilterName(e.target.value);
-              }}
-              value={filterName}
-              placeholder="User's Name (Exact)"
-              onKeyDown={handleInputKeyDown}
-              sx={{
-                marginTop: "20px",
-                borderBottom: "1px solid white",
-                "&&:before": {
-                  borderBottom: "none",
-                },
-                "&&:after": {
-                  borderBottom: "none",
-                },
-                "&&:hover:before": {
-                  borderBottom: "none",
-                },
-                "&&.Mui-focused:before": {
-                  borderBottom: "none",
-                },
-                "&&.Mui-focused": {
-                  outline: "none",
-                },
-                fontSize: "18px",
-              }}
-            />
 
             <FiltersSubContainer>
               <FormControl sx={{ width: "100%", marginTop: "30px" }}>
@@ -588,13 +558,8 @@ export const Home = ({ mode }: HomeProps) => {
                   indicatorColor={"secondary"}
                 >
                   <Tab
-                    label="All Videos"
+                    label="Q-Toons"
                     value={"all"}
-                    sx={{ fontSize: tabFontSize }}
-                  />
-                  <Tab
-                    label="Subscriptions"
-                    value={"subscriptions"}
                     sx={{ fontSize: tabFontSize }}
                   />
                 </TabList>
@@ -604,23 +569,6 @@ export const Home = ({ mode }: HomeProps) => {
                     onLoadMore={getVideosHandler}
                     isLoading={isLoading}
                   ></LazyLoad>
-                </TabPanel>
-                <TabPanel value={"subscriptions"} sx={{ width: "100%" }}>
-                  {filteredSubscriptionList.length > 0 ? (
-                    <>
-                      <VideoList videos={videos} />
-                      <LazyLoad
-                        onLoadMore={getVideosHandler}
-                        isLoading={isLoading}
-                      ></LazyLoad>
-                    </>
-                  ) : !isLoading ? (
-                    <div style={{ textAlign: "center" }}>
-                      You have no subscriptions
-                    </div>
-                  ) : (
-                    <></>
-                  )}
                 </TabPanel>
               </TabContext>
             </Box>

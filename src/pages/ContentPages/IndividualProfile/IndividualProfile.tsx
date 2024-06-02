@@ -11,7 +11,6 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { setUserAvatarHash } from "../../../state/features/globalSlice.ts";
 import { RootState } from "../../../state/store.ts";
-import { SubscribeButton } from "../../../components/common/ContentButtons/SubscribeButton.tsx";
 import { FollowButton } from "../../../components/common/ContentButtons/FollowButton.tsx";
 
 export const IndividualProfile = () => {
@@ -66,10 +65,6 @@ export const IndividualProfile = () => {
             </StyledCardColComment>
             {channelName !== userName && (
               <>
-                <SubscribeButton
-                  subscriberName={channelName}
-                  sx={{ marginLeft: "10px" }}
-                />
                 <FollowButton
                   followerName={channelName}
                   sx={{ marginLeft: "20px" }}

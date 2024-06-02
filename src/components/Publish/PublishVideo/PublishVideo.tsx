@@ -63,8 +63,8 @@ import {
 } from "../../../pages/Home/VideoList-styles.tsx";
 import { FrameExtractor } from "../../common/FrameExtractor/FrameExtractor.tsx";
 import {
-  QTUBE_PLAYLIST_BASE,
-  QTUBE_VIDEO_BASE,
+  QTOONS_PLAYLIST_BASE,
+  QTOONS_VIDEO_BASE,
 } from "../../../constants/Identifiers.ts";
 import { titleFormatter } from "../../../constants/Misc.ts";
 import { getFileName } from "../../../utils/stringFunctions.ts";
@@ -194,7 +194,7 @@ export const PublishVideo = ({ editId, editContent }: NewCrowdfundProps) => {
   };
 
   const search = async () => {
-    const url = `/arbitrary/resources/search?mode=ALL&service=PLAYLIST&mode=ALL&identifier=${QTUBE_PLAYLIST_BASE}&title=${filterSearch}&limit=20&includemetadata=true&reverse=true&name=${username}&exactmatchnames=true&offset=0`;
+    const url = `/arbitrary/resources/search?mode=ALL&service=PLAYLIST&mode=ALL&identifier=${QTOONS_PLAYLIST_BASE}&title=${filterSearch}&limit=20&includemetadata=true&reverse=true&name=Q-Toons&exactmatchnames=true&offset=0`;
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -269,7 +269,7 @@ export const PublishVideo = ({ editId, editContent }: NewCrowdfundProps) => {
 
         const identifier = editId
           ? editId
-          : `${QTUBE_VIDEO_BASE}${sanitizeTitle.slice(0, 30)}_${id}`;
+          : `${QTOONS_VIDEO_BASE}${sanitizeTitle.slice(0, 30)}_${id}`;
 
         const code = shortuid();
         const fullDescription = extractTextFromHTML(description);
@@ -304,7 +304,7 @@ export const PublishVideo = ({ editId, editContent }: NewCrowdfundProps) => {
             service: "VIDEO",
           },
           extracts: imageExtracts[i],
-          commentsId: `${QTUBE_VIDEO_BASE}_cm_${id}`,
+          commentsId: `${QTOONS_VIDEO_BASE}_cm_${id}`,
           category,
           subcategory,
           rating,
@@ -327,7 +327,7 @@ export const PublishVideo = ({ editId, editContent }: NewCrowdfundProps) => {
           title: title.slice(0, 50),
           description: metadescription,
           identifier: identifier + "_metadata",
-          tag1: QTUBE_VIDEO_BASE,
+          tag1: QTOONS_VIDEO_BASE,
           filename: `video_metadata.json`,
           code,
         };
@@ -340,7 +340,7 @@ export const PublishVideo = ({ editId, editContent }: NewCrowdfundProps) => {
           description: metadescription,
           identifier,
           filename: `${alphanumericString.trim()}.${fileExtension}`,
-          tag1: QTUBE_VIDEO_BASE,
+          tag1: QTOONS_VIDEO_BASE,
         };
         listOfPublishes.push(requestBodyJson);
         listOfPublishes.push(requestBodyVideo);
@@ -367,12 +367,12 @@ export const PublishVideo = ({ editId, editContent }: NewCrowdfundProps) => {
 
         const identifier = editId
           ? editId
-          : `${QTUBE_PLAYLIST_BASE}${sanitizeTitle.slice(0, 30)}_${id}`;
+          : `${QTOONS_PLAYLIST_BASE}${sanitizeTitle.slice(0, 30)}_${id}`;
 
         const videos = listOfPublishes
           .filter(
             item =>
-              item.service === "DOCUMENT" && item.tag1 === QTUBE_VIDEO_BASE
+              item.service === "DOCUMENT" && item.tag1 === QTOONS_VIDEO_BASE
           )
           .map(vid => {
             return {
@@ -390,7 +390,7 @@ export const PublishVideo = ({ editId, editContent }: NewCrowdfundProps) => {
           htmlDescription: description,
           image: coverImage,
           videos,
-          commentsId: `${QTUBE_PLAYLIST_BASE}_cm_${id}`,
+          commentsId: `${QTOONS_PLAYLIST_BASE}_cm_${id}`,
           category,
           subcategory,
           rating,
@@ -415,7 +415,7 @@ export const PublishVideo = ({ editId, editContent }: NewCrowdfundProps) => {
           title: title.slice(0, 50),
           description: metadescription,
           identifier: identifier + "_metadata",
-          tag1: QTUBE_VIDEO_BASE,
+          tag1: QTOONS_VIDEO_BASE,
         };
 
         listOfPublishes.push(requestBodyJson);
@@ -435,7 +435,7 @@ export const PublishVideo = ({ editId, editContent }: NewCrowdfundProps) => {
           const videos = listOfPublishes
             .filter(
               item =>
-                item.service === "DOCUMENT" && item.tag1 === QTUBE_VIDEO_BASE
+                item.service === "DOCUMENT" && item.tag1 === QTOONS_VIDEO_BASE
             )
             .map(vid => {
               return {
@@ -470,7 +470,7 @@ export const PublishVideo = ({ editId, editContent }: NewCrowdfundProps) => {
             title: playlistObject.title.slice(0, 50),
             description: metadescription,
             identifier: selectExistingPlaylist.identifier,
-            tag1: QTUBE_VIDEO_BASE,
+            tag1: QTOONS_VIDEO_BASE,
           };
 
           listOfPublishes.push(requestBodyJson);
@@ -642,7 +642,7 @@ export const PublishVideo = ({ editId, editContent }: NewCrowdfundProps) => {
     <>
       {username && (
         <>
-          {editId ? null : (
+          {/*COMMENT/} {editId ? null : (
             <StyledButton
               color="primary"
               startIcon={<AddBoxIcon />}
@@ -652,7 +652,7 @@ export const PublishVideo = ({ editId, editContent }: NewCrowdfundProps) => {
             >
               add video
             </StyledButton>
-          )}
+          )} {/*COMMENT*/}
         </>
       )}
 

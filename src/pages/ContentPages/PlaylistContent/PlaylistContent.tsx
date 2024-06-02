@@ -54,11 +54,10 @@ import {
 } from "../VideoContent/VideoContent.tsx";
 import { SuperLikesSection } from "../../../components/common/SuperLikesList/SuperLikesSection.tsx";
 import {
-  QTUBE_VIDEO_BASE,
+  QTOONS_VIDEO_BASE,
   SUPER_LIKE_BASE,
 } from "../../../constants/Identifiers.ts";
 import { minPriceSuperlike } from "../../../constants/Misc.ts";
-import { SubscribeButton } from "../../../components/common/ContentButtons/SubscribeButton.tsx";
 import { FollowButton } from "../../../components/common/ContentButtons/FollowButton.tsx";
 import { LikeAndDislike } from "../../../components/common/ContentButtons/LikeAndDislike.tsx";
 
@@ -156,7 +155,7 @@ export const PlaylistContent = () => {
       if (!name || !id) return;
       dispatch(setIsLoadingGlobal(true));
 
-      const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&query=${QTUBE_VIDEO_BASE}&limit=1&includemetadata=true&reverse=true&excludeblocked=true&name=${name}&exactmatchnames=true&offset=0&identifier=${id}`;
+      const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&query=${QTOONS_VIDEO_BASE}&limit=1&includemetadata=true&reverse=true&excludeblocked=true&name=Q-Toons&exactmatchnames=true&offset=0&identifier=${id}`;
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -212,7 +211,7 @@ export const PlaylistContent = () => {
 
         if (!name || !id) return;
 
-        const url = `/arbitrary/resources/search?mode=ALL&service=PLAYLIST&identifier=${id}&limit=1&includemetadata=true&reverse=true&excludeblocked=true&name=${name}&exactmatchnames=true&offset=0`;
+        const url = `/arbitrary/resources/search?mode=ALL&service=PLAYLIST&identifier=${id}&limit=1&includemetadata=true&reverse=true&excludeblocked=true&name=Q-Toons&exactmatchnames=true&offset=0`;
         const response = await fetch(url, {
           method: "GET",
           headers: {
@@ -253,7 +252,7 @@ export const PlaylistContent = () => {
             const videos = [];
             if (combinedData?.videos) {
               for (const vid of combinedData.videos) {
-                const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&identifier=${vid.identifier}&limit=1&includemetadata=true&reverse=true&name=${vid.name}&exactmatchnames=true&offset=0`;
+                const url = `/arbitrary/resources/search?mode=ALL&service=DOCUMENT&identifier=${vid.identifier}&limit=1&includemetadata=true&reverse=true&name=Q-Toons&exactmatchnames=true&offset=0`;
                 const response = await fetch(url, {
                   method: "GET",
                   headers: {
@@ -518,10 +517,6 @@ export const PlaylistContent = () => {
                       {channelName}
                       {channelName !== userName && (
                         <>
-                          <SubscribeButton
-                            subscriberName={channelName}
-                            sx={{ marginLeft: "20px" }}
-                          />
                           <FollowButton
                             followerName={channelName}
                             sx={{ marginLeft: "20px" }}
