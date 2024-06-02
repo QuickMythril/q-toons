@@ -26,12 +26,6 @@ export const StatsData = () => {
   const totalVideosPublished = useSelector(
     (state: RootState) => state.global.totalVideosPublished
   );
-  const totalNamesPublished = useSelector(
-    (state: RootState) => state.global.totalNamesPublished
-  );
-  const videosPerNamePublished = useSelector(
-    (state: RootState) => state.global.videosPerNamePublished
-  );
 
   useEffect(() => {
     getVideosCount();
@@ -42,17 +36,6 @@ export const StatsData = () => {
       <div>
         Videos:{" "}
         <span style={{ fontWeight: "bold" }}>{totalVideosPublished}</span>
-      </div>
-      <div>
-        Publishers:{" "}
-        <span style={{ fontWeight: "bold" }}>{totalNamesPublished}</span>
-      </div>
-      <div>
-        Average:{" "}
-        <span style={{ fontWeight: "bold" }}>
-          {videosPerNamePublished > 0 &&
-            Number(videosPerNamePublished).toFixed(0)}
-        </span>
       </div>
     </StatsCol>
   );
